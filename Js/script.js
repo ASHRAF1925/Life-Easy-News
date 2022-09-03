@@ -481,19 +481,7 @@ const load_details_news = async (id) => {
 
                     </div>
                    
-                    <div class="d-flex">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-
-                    </div>
-                    <div class="me-3">
-
-                                    <button onclick="load_details_news('${news_id}')" type="button"
-                                        class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                            class="fa-sharp fa-solid fa-arrow-right"></i></button>
-
-
-                     </div
+                 
                 </div>
             </div>
         </div>
