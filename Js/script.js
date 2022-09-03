@@ -13,9 +13,10 @@ const category_selection = () => {
             }
 
             event.target.classList.add('active-nav');
-            console.log("hi hi")
-            console.log(event.target.innerText)
-            load_news(event.target.innerText)
+
+            toggleSpinner(true);
+
+            load_news(event.target.innerText);
 
 
 
@@ -40,6 +41,17 @@ const display_categoris = (array) => {
     }
     category_selection();
 }
+// spinner
+const toggleSpinner = isloading => {
+    const loader = document.getElementById('loader');
+    if (isloading) {
+        loader.classList.remove("d-none");
+    }
+    else {
+        loader.classList.add("d-none");
+    }
+}
+
 
 
 // category loading 
@@ -60,7 +72,7 @@ load_catergoris();
 //function to truncate
 function truncate(input) {
     if (input.length > 250) {
-        return input.substring(0, 250) + '...';
+        return input.substring(0, 250) + ' ... ';
     }
     return input;
 };
@@ -233,6 +245,7 @@ const display_news = (array) => {
 
 
     }
+    toggleSpinner(false);
 
 }
 
