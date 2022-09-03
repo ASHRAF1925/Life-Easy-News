@@ -15,7 +15,7 @@ const display_categoris = (array) => {
     for (var value of array) {
         // console.log(value.category_name);
         const new_item = document.createElement('div');
-        new_item.classList.add(" text-center px-4 text-center my-auto py-2 rounded Category_item  ");
+        new_item.classList.add('text-center', 'px-4', 'text-center', 'my-auto', 'py-2', 'rounded', 'mx-2', 'Category_item');
         new_item.innerHTML = `
         ${value.category_name}
         `
@@ -23,6 +23,7 @@ const display_categoris = (array) => {
         categories.append(new_item);
 
     }
+    category_selection();
 }
 load_catergoris();
 
@@ -35,16 +36,13 @@ const category_selection = () => {
 
         child.addEventListener('click', (event) => {
             for (var child of categories.children) {
-                console.log("removing clas")
-                console.log(child)
+
                 child.classList.remove('active-nav');
-                console.log(child.classList)
+
             }
 
             event.target.classList.add('active-nav');
-            console.log("woring")
-            console.log(event.target)
-            console.log(event.target.classList)
+
 
 
         })
