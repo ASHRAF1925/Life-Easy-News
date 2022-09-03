@@ -8,3 +8,13 @@
 
 
 }
+
+.Category_item {
+    background-color: white;
+}
+
+.active-nav {
+    background-color: rgba(174, 103, 240, 0.397) !important;
+    color: blueviolet;
+    border: 2px blueviolet solid;
+}
