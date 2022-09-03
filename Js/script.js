@@ -524,6 +524,7 @@ document.getElementById('Default').addEventListener('click', () => {
     Most_sort = false;
     less_sort = false;
     load_news(selected_category);
+    document.getElementById("selected_sort").innerText = "Default "
 })
 
 document.getElementById('MostView').addEventListener('click', () => {
@@ -532,6 +533,7 @@ document.getElementById('MostView').addEventListener('click', () => {
     Most_sort = true;
     less_sort = false;
     load_news(selected_category);
+    document.getElementById("selected_sort").innerText = "Most Viewed"
 })
 
 document.getElementById('lessView').addEventListener('click', () => {
@@ -540,6 +542,7 @@ document.getElementById('lessView').addEventListener('click', () => {
     Most_sort = false;
     less_sort = true;
     load_news(selected_category);
+    document.getElementById("selected_sort").innerText = "Least Viewed"
 })
 
 
