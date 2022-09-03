@@ -13,6 +13,10 @@ const category_selection = () => {
             }
 
             event.target.classList.add('active-nav');
+            console.log("hi hi")
+            console.log(event.target.innerText)
+            load_news(event.target.innerText)
+
 
 
 
@@ -53,6 +57,69 @@ const load_catergoris = () => {
 }
 
 load_catergoris();
+// display news
+const display_news = (array) => {
+    for (var value of array) {
+        console.log(value.title);
+        console.log(value.details);
+        console.log(value.image_url);
+        console.log(value.thumbnail_url);
+        console.log(value.total_view);
+        console.log(value.author.name);
+        console.log(value.author.published_date);
+        console.log(value.author.img);
+
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// news loading 
+
+const load_news = (category_id) => {
+    //getting category_id
+    let categoryID;
+
+    const url1 = `https://openapi.programming-hero.com/api/news/categories`
+    fetch(url1)
+        .then(res => res.json())
+        .then(data => {
+            for (var value of data.data.news_category) {
+                console.log(value.category_id);
+                if (value.category_name == category_id) {
+                    categoryID = value.category_id;
+                    console.log("category id found")
+                    console.log(categoryID)
+                    break;
+                }
+
+            }
+            // news load
+            console.log("in news")
+            console.log(categoryID)
+            const news_container = document.getElementById('news_container');
+            const url = `https://openapi.programming-hero.com/api/news/category/${categoryID}`
+            console.log(`https://openapi.programming-hero.com/api/news/category/${categoryID}`)
+            fetch(url)
+                .then(res => res.json())
+                .then(data => display_news(data.data))
+                .catch(error => console.log(error))
+        })
+        .catch(error => console.log(error))
+}
+
 
 
 
