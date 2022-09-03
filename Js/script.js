@@ -1,3 +1,8 @@
+let default_sort = true;
+let Most_sort = false;
+let less_sort = false;
+
+
 // categories selection
 const category_selection = () => {
     const categories = document.getElementById('category_selection');
@@ -486,14 +491,23 @@ const load_details_news = async (id) => {
 //sorting
 document.getElementById('Default').addEventListener('click', () => {
     console.log("Deafaul selected");
+    let default_sort = true;
+    let Most_sort = false;
+    let less_sort = false;
 })
 
 document.getElementById('MostView').addEventListener('click', () => {
     console.log("MostView selected");
+    let default_sort = false;
+    let Most_sort = true;
+    let less_sort = false;
 })
 
 document.getElementById('lessView').addEventListener('click', () => {
     console.log("lessView selected");
+    let default_sort = false;
+    let Most_sort = false;
+    let less_sort = true;
 })
 
 
