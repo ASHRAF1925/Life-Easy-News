@@ -56,13 +56,22 @@ const toggleSpinner = isloading => {
 
 // category loading 
 
-const load_catergoris = () => {
+const load_catergoris = async () => {
     const category_container = document.getElementById('category_selection');
-    const url = `https://openapi.programming-hero.com/api/news/categories`
-    fetch(url)
-        .then(res => res.json())
-        .then(data => display_categoris(data.data.news_category))
-        .catch(error => console.log(error))
+    const url = `https://openapi.programming-hero.com/api/news/categories`;
+
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        display_categoris(data.data.news_category);
+
+    }
+    catch (error) {
+        console.log(error);
+
+    }
+
+
 
 
 
@@ -266,18 +275,16 @@ const load_news = (category_id) => {
                 if (value.category_name == category_id) {
                     category.innerText = value.category_name;
                     categoryID = value.category_id;
-                    console.log("category id found")
-                    console.log(categoryID)
+
                     break;
                 }
 
             }
             // news load
-            console.log("in news")
-            console.log(categoryID)
+
             const news_container = document.getElementById('news_container');
             const url = `https://openapi.programming-hero.com/api/news/category/${categoryID}`
-            console.log(`https://openapi.programming-hero.com/api/news/category/${categoryID}`)
+
             fetch(url)
                 .then(res => res.json())
                 .then(data => display_news(data.data))
