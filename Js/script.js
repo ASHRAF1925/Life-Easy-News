@@ -483,6 +483,18 @@ const load_details_news = async (id) => {
 
     console.log(id);
 }
+//sorting
+document.getElementById('Default').addEventListener('click', () => {
+    console.log("Deafaul selected");
+})
+
+document.getElementById('MostView').addEventListener('click', () => {
+    console.log("MostView selected");
+})
+
+document.getElementById('lessView').addEventListener('click', () => {
+    console.log("lessView selected");
+})
 
 
 

@@ -55,10 +55,7 @@
         <div class="container">
             <div class="row">
                 <div id="category_selection" class="col-sm-12 col-lg-12 d-flex flex-wrap ">
-                    <div class=" text-center px-4 text-center my-auto py-2 rounded Category_item active-nav ">
-                        Home
 
-                    </div>
 
                 </div>
 
@@ -76,10 +73,22 @@
 
             <!-- sortby section start  -->
             <section class="d-flex justify-content-between shadow p-3 mb-1 bg-body rounded ">
-                <div class="d-flex">
+                <div class="d-flex justify-content-center align-items-center text-center">
                     <p>Sort By View:
 
                     </p>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle bg-white text-dark mx-1 text-center" href="#"
+                            role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sort
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a id='Default' class="dropdown-item" href="#">Default</a></li>
+                            <li><a id="MostView" class="dropdown-item" href="#">Most View</a></li>
+                            <li><a id="lessView" class="dropdown-item" href="#">Least View</a></li>
+                        </ul>
+                    </div>
 
 
 
