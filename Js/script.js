@@ -88,6 +88,7 @@ function truncate(input) {
 
 // display news
 const display_news = (array) => {
+    console.log(array)
     let news_title;
     let news_details;
     let news_thumbline;
@@ -97,25 +98,30 @@ const display_news = (array) => {
     let news_date;
     let news_views;
     let news_stars;
+    let news_id;
     let no_data = "No Data Available!"
     const news_container = document.getElementById('news_container');
     news_container.innerHTML = '';
     const total_news = document.getElementById('total_news');
     total_news.innerText = array.length;
-    console.log("array length")
-    console.log(array.length)
+
     for (var value of array) {
-        console.log("    ");
-        console.log("    ");
-        console.log("    ");
-        console.log(value.title);
+
+        if (value._id != null) {
+            news_id = value._id;
+        }
+        else {
+            news_id = no_data;
+        }
+
+
         if (value.title != null) {
             news_title = value.title;
         }
         else {
             news_title = no_data;
         }
-        console.log(value.details);
+
         if (value.details != null) {
             news_details = value.details;
             news_details = truncate(news_details);
@@ -123,7 +129,7 @@ const display_news = (array) => {
         else {
             news_details = no_data;
         }
-        console.log(value.image_url);
+
         if (value.image_url != null) {
             news_image = value.image_url;
         }
@@ -131,7 +137,7 @@ const display_news = (array) => {
             news_image = no_data;
         }
 
-        console.log(value.thumbnail_url);
+
         if (value.thumbnail_url != null) {
             news_thumbline = value.thumbnail_url;
         }
@@ -140,14 +146,13 @@ const display_news = (array) => {
         }
 
 
-        console.log(value.total_view);
         if (value.thumbnail_url != null) {
             news_thumbline = value.thumbnail_url;
         }
         else {
             news_thumbline = no_data;
         }
-        console.log(value.author.name);
+
         if (value.author.name != null) {
             news_author = value.author.name;
         }
@@ -155,7 +160,7 @@ const display_news = (array) => {
             news_author = no_data;
         }
         /////
-        console.log(value.author.published_date);
+
         if (value.author.published_date != null) {
             news_date = value.author.published_date;
         }
@@ -163,7 +168,7 @@ const display_news = (array) => {
             news_date = no_data;
         }
         //////
-        console.log(value.author.img);
+
         if (value.author.img != null) {
             news_author_image = value.author.img;
         }
@@ -171,7 +176,7 @@ const display_news = (array) => {
             news_author_image = no_data;
         }
         ///
-        console.log(value.total_view);
+
         if (value.total_view != null) {
             news_views = value.total_view;
         }
@@ -179,20 +184,13 @@ const display_news = (array) => {
             news_views = no_data;
         }
 
-        console.log(value.rating.number);
+
         if (value.rating.number != null) {
             news_stars = value.rating.number;
         }
         else {
             news_stars = no_data;
         }
-        console.log("    ");
-        console.log("    ");
-        console.log("    ");
-
-
-
-
 
         const new_item = document.createElement('div');
         new_item.classList.add('my-5', 'shadow', 'p-3', 'mb-5', 'rounded');
@@ -232,15 +230,20 @@ const display_news = (array) => {
                         <p>${news_views}</p>
 
                     </div>
+                   
                     <div class="d-flex">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
 
                     </div>
                     <div class="me-3">
-                        <i class="fa-sharp fa-solid fa-arrow-right"></i>
 
-                    </div>
+                                    <button onclick="load_details_news('${news_id}')" type="button"
+                                        class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                            class="fa-sharp fa-solid fa-arrow-right"></i></button>
+
+
+                     </div
                 </div>
             </div>
         </div>
@@ -280,6 +283,7 @@ const load_news = (category_id) => {
                 }
 
             }
+
             // news load
 
             const news_container = document.getElementById('news_container');
@@ -292,7 +296,193 @@ const load_news = (category_id) => {
         })
         .catch(error => console.log(error))
 }
+// modal operation
+const load_details_news = async (id) => {
+    console.log("loading modal");
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
 
+    try {
+        console.log("phone object")
+        const res = await fetch(url);
+        const data = await res.json();
+        console.log(data.data);
+
+        let news_title;
+        let news_details;
+        let news_thumbline;
+        let news_image;
+        let news_author;
+        let news_author_image;
+        let news_date;
+        let news_views;
+        let news_stars;
+        let news_id;
+        let no_data = "No Data Available!"
+        const modal_container = document.getElementById('modal-body-elements');
+        modal_container.innerHTML = '';
+
+        for (var value of data.data) {
+
+            if (value._id != null) {
+                news_id = value._id;
+            }
+            else {
+                news_id = no_data;
+            }
+
+
+            if (value.title != null) {
+                news_title = value.title;
+            }
+            else {
+                news_title = no_data;
+            }
+
+            if (value.details != null) {
+                news_details = value.details;
+
+            }
+            else {
+                news_details = no_data;
+            }
+
+            if (value.image_url != null) {
+                news_image = value.image_url;
+            }
+            else {
+                news_image = no_data;
+            }
+
+
+            if (value.thumbnail_url != null) {
+                news_thumbline = value.thumbnail_url;
+            }
+            else {
+                news_thumbline = no_data;
+            }
+
+
+            if (value.thumbnail_url != null) {
+                news_thumbline = value.thumbnail_url;
+            }
+            else {
+                news_thumbline = no_data;
+            }
+
+            if (value.author.name != null) {
+                news_author = value.author.name;
+            }
+            else {
+                news_author = no_data;
+            }
+            /////
+
+            if (value.author.published_date != null) {
+                news_date = value.author.published_date;
+            }
+            else {
+                news_date = no_data;
+            }
+            //////
+
+            if (value.author.img != null) {
+                news_author_image = value.author.img;
+            }
+            else {
+                news_author_image = no_data;
+            }
+            ///
+
+            if (value.total_view != null) {
+                news_views = value.total_view;
+            }
+            else {
+                news_views = no_data;
+            }
+
+
+            if (value.rating.number != null) {
+                news_stars = value.rating.number;
+            }
+            else {
+                news_stars = no_data;
+            }
+
+            const new_item = document.createElement('div');
+            new_item.classList.add('my-5', 'shadow', 'p-3', 'mb-5', 'rounded');
+
+            new_item.innerHTML = `
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-12 text-center  ">
+                <img class="rounded img-fluid p-1 " src="${news_thumbline}"">
+            </div>
+            <div class="col-lg-8 col-sm-12 p-1 text-center">
+                <h1>${news_title}</h1>
+                <article>
+                    <p class="news-article">
+                    ${news_details}
+                        
+                    </p>
+
+                </article>
+
+
+
+
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex">
+                        <img src="${news_author_image}" alt="" width="60" height="60"
+                            class="d-inline-block align-text-top bg-light rounded-circle  ">
+                        <div>
+                            <p>${news_author}</p>
+                            <p>${news_date}</p>
+                        </div>
+
+
+                    </div>
+                    <div class="d-flex">
+                        <p>view : </p>
+                        <p>${news_views}</p>
+
+                    </div>
+                   
+                    <div class="d-flex">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+                    <div class="me-3">
+
+                                    <button onclick="load_details_news('${news_id}')" type="button"
+                                        class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                            class="fa-sharp fa-solid fa-arrow-right"></i></button>
+
+
+                     </div
+                </div>
+            </div>
+        </div>
+        
+        `
+
+            modal_container.append(new_item);
+
+
+
+
+
+        }
+
+
+    }
+    catch (error) {
+        console.log(error);
+
+    }
+
+    console.log(id);
+}
 
 
 
