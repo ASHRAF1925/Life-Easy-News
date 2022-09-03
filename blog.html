@@ -31,8 +31,12 @@
 
             </div>
             <div class="d-flex my-auto ms-auto me-3 ">
-                <h3 class="ms-3">News</h3>
-                <h3 class="ms-3">Blogs</h3>
+                <a href="index.html">
+                    <h3 class="ms-3">News</h3>
+                </a>
+                <a href="blog.html">
+                    <h3 class="ms-3">Blogs</h3>
+                </a>
 
             </div>
             <div><img src="images/company_log.png" alt="" width="60" height="60"
@@ -109,8 +113,198 @@
                 <tbody>
             </table>
 
+            <br>
+            <br>
+            <br>
+            <h3>Difference between Arrow function and Regular Function</h3>
 
-            </p>
+            Arrow function — also called fat arrow function— is a new feature introduced in ES6 that is a more
+            concise syntax for writing function expressions. While both regular JavaScript functions and arrow
+            functions work in a similar manner, there are certain differences between them.
+
+
+            <br>1. Syntax
+
+            <br>The arrow function example above allows a developer to accomplish the same result with fewer lines of
+            code and approximately half the typing.
+
+            <br>Curly brackets aren’t required if only one expression is present. The above example can also be written
+            like this:
+
+            <br>let add = (x, y) => x + y;
+            <br>If there’s only one argument, then the parentheses are not required either:
+
+            <br>let squareNum = x => x * x;
+            <br>What if there are no arguments?
+
+            <br>let sayHi = _ => console.log(“Hi”);
+            <br>2. Arguments binding
+            <br>Arrow functions do not have an arguments binding. However, they have access to the arguments object of
+            the closest non-arrow parent function. Named and rest parameters are heavily relied upon to capture the
+            arguments passed to arrow functions.
+
+            <br> In case of a regular function:
+
+            <br>let myFunc = {
+            <br>showArgs(){
+            <br>console.log(arguments);
+            <br>}
+            <br>};
+            <br>myFunc.showArgs(1, 2, 3, 4);
+
+            <br>In case of an arrow function:
+
+            <br>let myFunc = {
+            <br> showArgs : () => {
+            <br> console.log(...arguments);
+            <br> }
+            <br> };
+            <br> myFunc.showArgs(1, 2, 3, 4);
+
+            <br> 3. Use of this keyword
+            <br>Unlike regular functions, arrow functions do not have their own this. The value of this inside an arrow
+            function remains the same throughout the lifecycle of the function and is always bound to the value of
+            this in the closest non-arrow parent function.
+
+
+
+            <br>4. Using new keyword
+            <br> Regular functions created using function declarations or expressions are constructible and callable.
+            Since regular functions are constructible, they can be called using the new keyword.
+
+            <br> However, the arrow functions are only callable and not constructible, i.e arrow functions can never be
+            used as constructor functions. Hence, they can never be invoked with the new keyword.
+
+            <br> let add = (x, y) => console.log(x + y);
+            <br> new add(2,3);
+
+            <br> 5. No duplicate named parameters
+            <br> Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
+
+            <br> It means that the following is valid JavaScript:
+
+            <br> function add(x, x){}
+            <br> It is not, however, when using strict mode:
+
+            <br> 'use strict';
+            <br> function add(x, x){}
+            <br> // SyntaxError: duplicate formal argument x
+            <br>With arrow functions, duplicate named arguments are always, regardless of strict or non-strict mode,
+            invalid.
+
+            <br> (x, x) => {}
+            <br> // SyntaxError: duplicate argument names not allowed in this context
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <h3>Difference between Map Foreach Filter Find</h3>
+            <br>1. Foreach
+            <br> The easy one right ? we all know why this method is used for and even you don’t know about this method
+            the
+            name pretty much explains everything.
+
+            <br>Foreach takes a callback function and run that callback function on each element of array one by one.
+
+            <br> var sample = [1, 2, 3];
+            <br> // es5
+            <br> sample.forEach(function (elem, index){
+            <br>console.log(elem + ' comes at ' + index);
+            <br> })
+            <br> // es6
+            <br> sample.forEach((elem, index) => `${elem} comes at ${index}`)
+            <br> /*
+            <br> output
+            <br> 1 comes at 0
+            <br> 2 comes at 1
+            <br> 3 comes at 2
+            <br> */
+            <br> For every element on the array we are calling a callback which gets element & its index provided by
+            foreach.
+
+            Basically forEach works as a traditional for loop looping over the array and providing you array elements to
+            do operations on them.
+
+
+            <br> 2. Filter
+            <br> Whenever you have to filter an array Javascript inbuilt method to filter your array is the right choice
+            to
+            use. Filter let you provide a callback for every element and returns a filtered array.
+
+            <br> The main difference between forEach and filter is that forEach just loop over the array and executes
+            the
+            callback but filter executes the callback and check its return value. If the value is true element remains
+            in the resulting array but if the return value is false the element will be removed for the resulting array.
+
+            <br> var sample = [1, 2, 3] // yeah same array
+            <br> // es5
+            <br> var result = sample.filter(function(elem){
+            <br> return elem !== 2;
+            <br> })
+            <br> console.log(result)
+            <br> // es6
+            <br> var result = sample.filter(elem => elem !== 2)
+            <br> /* output */
+            <br> [1, 3]
+            <br> See how easy it was. We passed a callback to filter which got run against every element in the array.
+            In the
+            callback we checked if the element !== 2 if the condition fails ( when elem was equal to 1 or 3 ) include
+            them into the resulting array else don’t include the element in the resulting array.
+
+            <br>Also take notice filter does not update the existing array it will return a new filtered array every
+            time.
+
+            <br> 3. Map
+            <br> One of my favourite and most used array method of all time. As a ReactJS developer I use map a lot
+            inside my
+            application UI.
+
+            <br> Map like filter & foreach takes a callback and run it against every element on the array but whats
+            makes it
+            unique is it generate a new array based on your existing array.
+
+            <br> Let’s understand map with an example
+
+            <br> var sample = [1, 2, 3] // i am never gonna change Boo! Yeah
+            <br> // es5
+            <br> var mapped = sample.map(function(elem) {
+            <br> return elem * 10;
+            <br> })
+            <br> // es6
+            <br> let mapped = sample.map(elem => elem * 10)
+            <br> console.log(mapped);
+            <br> /* output */
+            <br> [10, 20, 30]
+            <br> Map ran through every element of the array, multiplied it to 10 and returned the element which will be
+            going
+            to store inside our resulting array.
+
+            <br> Like filter, map also returns an array. The provided callback to map modifies the array elements and
+            save
+            them into the new array upon completion that array get returned as the mapped array.
+
+            <br>4.Find
+            <br>
+            The find() method returns the value of the first element that passes a test. The find() method executes a
+            function for each array element. The find() method returns undefined if no elements are found. The find()
+            method does not execute the function for empty elements.
+
+            <h3>
+                Why we use Template String ?
+            </h3>
+            <br>
+            Template strings are a powerful feature of modern JavaScript released in ES6. It lets us insert/interpolate
+            variables and expressions into strings without needing to concatenate like in older versions of JavaScript.
+            It allows us to create strings that are complex and contain dynamic elements. Another great thing that comes
+            with template strings are tags. Tags are functions that take a string and the decomposed parts of the string
+            as parameters and are great for converting strings to different entities.
+            <br>
+
+
+
+
         </article>
     </main>
 
@@ -121,7 +315,7 @@
         crossorigin="anonymous"></script>
     <!-- JavaScript Links End        -->
 </body>
-<footer class=" text-center bg-white shadow-lg p-3  bg-body rounded">
+<footer class=" text-center bg-white shadow-lg p-3  bg-body rounded mt-5">
     <p>Copyright 2022 News Portal</p>
 
 
