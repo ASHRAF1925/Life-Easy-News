@@ -1,6 +1,7 @@
 let default_sort = true;
 let Most_sort = false;
 let less_sort = false;
+let selected_category = "Breaking News";
 
 
 // categories selection
@@ -20,8 +21,9 @@ const category_selection = () => {
             event.target.classList.add('active-nav');
 
             toggleSpinner(true);
+            selected_category = event.target.innerText;
 
-            load_news(event.target.innerText);
+            load_news(selected_category);
 
 
 
@@ -93,6 +95,33 @@ function truncate(input) {
 
 // display news
 const display_news = (array) => {
+    if (default_sort) {
+        console.log("soritng default")
+
+    }
+    else if (Most_sort) {
+
+        console.log("sorting most");
+        array.sort((a, b) => {
+            return b.total_view - a.total_view;
+        });
+        array.forEach((e) => {
+            console.log(`${e.title}  ${e.total_view}`);
+        });
+
+    }
+    else if (less_sort) {
+        console.log("sorting least");
+        array.sort((a, b) => {
+            return a.total_view - b.total_view;
+        });
+        array.forEach((e) => {
+            console.log(`${e.title}  ${e.total_view}`);
+        });
+    }
+
+
+
     console.log(array)
     let news_title;
     let news_details;
@@ -491,23 +520,26 @@ const load_details_news = async (id) => {
 //sorting
 document.getElementById('Default').addEventListener('click', () => {
     console.log("Deafaul selected");
-    let default_sort = true;
-    let Most_sort = false;
-    let less_sort = false;
+    default_sort = true;
+    Most_sort = false;
+    less_sort = false;
+    load_news(selected_category);
 })
 
 document.getElementById('MostView').addEventListener('click', () => {
     console.log("MostView selected");
-    let default_sort = false;
-    let Most_sort = true;
-    let less_sort = false;
+    default_sort = false;
+    Most_sort = true;
+    less_sort = false;
+    load_news(selected_category);
 })
 
 document.getElementById('lessView').addEventListener('click', () => {
     console.log("lessView selected");
-    let default_sort = false;
-    let Most_sort = false;
-    let less_sort = true;
+    default_sort = false;
+    Most_sort = false;
+    less_sort = true;
+    load_news(selected_category);
 })
 
 
